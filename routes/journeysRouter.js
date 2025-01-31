@@ -1,20 +1,26 @@
 import express from "express";
 const router = express.Router();
 
-import { index } from "../controllers/tagsController.js";
+import {
+  index,
+  show,
+  store,
+  update,
+  destroy,
+} from "../controllers/journeysController.js";
 //Rotte
 
 // Index - Read all
 router.get("/", index);
 
 // Show - Read one -
-// router.get("/:id", show);
+router.get("/:id", show);
 
 //Store - Create
-// router.post("/", store);
+router.post("/", store);
 
 //Update - Update  totale
-// router.put("/:id", update);
+router.put("/:id", update);
 
 // Modify - Update (partial)
 // router.patch("/:id", (req, res) => {
@@ -22,8 +28,7 @@ router.get("/", index);
 // });
 
 // Destroy - Delete
-// router.delete("/:id", destroy);
-
+router.delete("/:id", destroy);
 
 //export router
 export default router;

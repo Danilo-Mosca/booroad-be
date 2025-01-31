@@ -1,8 +1,8 @@
-import { posts } from "../models/posts.js";
+import { journeys } from "../models/dataBooRoad.js";
 import CustomError from "../classes/CustomError.js";
 
 function index(req, res) {
-let data = [...posts];
+let data = [...journeys];
 // Se nella richiesta che mi arriva c'è una query string (esempio: ?search=roma), allora filtro nella variabile 
 // data (che contiene l'oggetto con tutti i post) tutti i post che hanno all'interno 
 // del loro titolo la parola chiave della query string ricevuta e invio al frontend solo quei post.
@@ -11,11 +11,11 @@ let data = [...posts];
 // Altrimenti se non arriva nessuna query string, passo tutto l'oggetto data non filtrato
 if (req.query.search){
   const queryString = req.query.search.toLowerCase();
-  data = posts.filter((item) => item.title.toLowerCase().includes(queryString));
+  data = journeys.filter((item) => item.title.toLowerCase().includes(queryString));
 }
 const response = {
     info: {
-      totalCount: posts.length,
+      totalCount: journeys.length,
     },
   results: [...data],
   };
@@ -24,12 +24,12 @@ const response = {
 
 function show(req, res) {
   const id = parseInt(req.params.id);
-  const item = posts.find((post) => post.id === id);
+  const item = journeys.find((post) => post.id === id);
 
 
   /* Avrei potuto inserire anche il findIndex (che restituisce l'indice dell'oggetto con quello stesso id):
-  const itemIndex = posts.findIndex((post)=> post.id === id);
-  const item = posts[itemIndex];    // e poi lo assegno alla costante item
+  const itemIndex = journeys.findIndex((post)=> post.id === id);
+  const item = journeys[itemIndex];    // e poi lo assegno alla costante item
   */
 
   // Se l'indice non è stato trovato allora lancio un errore personalizzato (creando un nuovo oggetto della mia classe CustomError) con throw:
@@ -45,23 +45,23 @@ function store(req, res) {
 
   // l'id me lo vado a creare:
   let newId = 0;
-  for (let i = 0; i < posts.length; i++) {
-    if (posts[i].id > newId) {
-      newId = posts[i].id;
+  for (let i = 0; i < journeys.length; i++) {
+    if (journeys[i].id > newId) {
+      newId = journeys[i].id;
     }
   }
   newId += 1;
   console.log(req.body);
   // // new data is in req.body
   const newPost = { id: newId, ...req.body };
-  posts.push(newPost);
+  journeys.push(newPost);
   // res.status(201).json(newItem);
   res.json({ success: true, item: newPost });
 }
 
 function update(req, res) {
   const id = parseInt(req.params.id);
-  const item = posts.find((item) => item.id === id);
+  const item = journeys.find((item) => item.id === id);
   if (!item) {
     throw new CustomError("L'elemento non esiste", 404);
   }
@@ -77,9 +77,9 @@ function update(req, res) {
 }
 function destroy(req, res) {
   const id = parseInt(req.params.id);
-  const index = posts.findIndex((item) => item.id === id);
+  const index = journeys.findIndex((item) => item.id === id);
   if (index !== -1) {
-    posts.splice(index, 1);
+    journeys.splice(index, 1);
     res.sendStatus(204);
   } else {
     throw new CustomError("L'elemento non esiste", 404);

@@ -7,7 +7,7 @@ import {
   store,
   update,
   destroy,
-} from "../controllers/postController.js";
+} from "../controllers/participantsController.js";
 //Rotte
 
 // Index - Read all

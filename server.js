@@ -1,3 +1,4 @@
+// importo express in server js
 import express from "express";
 
 // Other imports
@@ -5,8 +6,8 @@ import errorsHandler from "./middlewares/errorsHandler.js";
 import notFound from "./middlewares/notFound.js";
 import corsPolicy from "./middlewares/corsPolicy.js";
 // Routing 
-import postsRouter from "./routes/posts.js";
-import tagsRouter from "./routes/tags.js";
+import journeysRouter from "./routes/journeysRouter.js";
+import participantsRouter from "./routes/participantsRouter.js";
 
 // create a server instance
 const app = express();
@@ -29,8 +30,8 @@ app.get("/", (req, res) => {
 });
 
 //other routes
-app.use("/posts", postsRouter);
-app.use("/tags", tagsRouter);
+app.use("/api/journeys", journeysRouter);
+app.use("/api/participants", participantsRouter);
 // index leggi lista /posts metodo get R
 // show leggo un solo libro /posts/:id metodo get R
 // store salvo un libro /posts metodo post C
@@ -43,7 +44,7 @@ app.use(errorsHandler);
 // gestione not found url
 app.use(notFound);
 
-//server must listen on your host and your port
+// Server che rimane in ascolto dell'Host alla porta specificata
 app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}}`);
+  console.log(`Server is running on http://localhost:${port}`);
 });
