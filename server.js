@@ -13,7 +13,7 @@ import participantsRouter from "./routes/participantsRouter.js";
 const app = express();
 
 // set costant to port
-const port = process.env.PORT || 3000;
+const port = process?.env?.PORT || 3000;
 
 // Gestione asset statici
 app.use(express.static("public"));
