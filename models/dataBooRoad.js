@@ -4,18 +4,21 @@ let journeys = [
         destination: "Parigi",
         initial_date: "2023-03-01",
         end_date: "2023-03-05",
+        image_path: "/images/cities/paris.jpg",
     },
     {
         id: 2,
         destination: "Barcellona",
         initial_date: "2023-04-10",
         end_date: "2023-04-15",
+        image_path: "/images/cities/barcellona.jpg",
     },
     {
         id: 3,
         destination: "Roma",
         initial_date: "2023-05-20",
         end_date: "2023-05-25",
+        image_path: "/images/cities/roma.jpg",
     },
 ];
 
