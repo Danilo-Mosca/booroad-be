@@ -31,7 +31,7 @@ app.get("/", (req, res) => {
 
 //other routes
 app.use("/api/journeys", journeysRouter);
-app.use("/api/participants", participantsRouter);
+app.use("/api/journeys/api/participants", participantsRouter);
 // index leggi lista /posts metodo get R
 // show leggo un solo libro /posts/:id metodo get R
 // store salvo un libro /posts metodo post C
